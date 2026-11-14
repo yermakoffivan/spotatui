@@ -4,12 +4,15 @@
 
 ### Added
 
+- **A recap of the year in December**: from 1 December the terminal app offers the recap of the whole year once, in the popup that offers the monthly recap. The year popup also counts as that month's, and `enable_monthly_recap_prompt: false` turns both off. `spotatui history recap --period year` makes the same recap on any day.
+- **The recap share card shows where you listened**: a Sources line names the three services with the most plays and their share, such as "Spotify 78% · Qobuz 21% · YouTube <1%", from the history spotatui already keeps. The card of the year recap shows the year in its badge, and the card footer names `spotatui.com`.
 - **Sort the playlists sidebar**: order the Spotify playlists by Spotify's own order, by what you played last in spotatui, or by name. Press `,` in the playlists sidebar or choose the order in Your Library in the GUI. The choice is saved in `state.yml`; folders keep their positions and the community playlist stays pinned first ([#657](https://github.com/LargeModGames/spotatui/issues/657)).
 - **Scroll to change the volume in the GUI**: the mouse wheel over the volume bar in the desktop app and the browser GUI steps the volume up or down by the same step as the arrow keys. A trackpad swipe adds up its small scroll events instead of stepping on each one, and the seek bar still ignores the wheel ([#1059](https://github.com/LargeModGames/spotatui/issues/1059)).
 
 ### Fixed
 
 - **Text Emphasis off no longer bolds the selected row**: with `behavior.enable_text_emphasis: false`, the highlighted row in every list and table keeps its reversed colors but is no longer drawn bold ([#822](https://github.com/LargeModGames/spotatui/issues/822)).
+- **The recap share card shows the cover again**: the recap page asked Apple's iTunes search for the cover of your top track from the browser, and the browser blocked the answer, so the card and the downloaded picture always showed the placeholder. spotatui now does the lookup when it makes the recap, with the same title and artist, and keeps the placeholder when the lookup fails or you are offline.
 - **A misspelled default sort direction warns instead of sorting ascending**: a `default_sort_*` setting with a direction other than `asc` or `desc`, such as `name:dsc` or `name:DESC`, sorted the screen by name from A to Z and logged nothing. It now warns at config load and falls back to the default order, like a misspelled field ([#1021](https://github.com/LargeModGames/spotatui/issues/1021)).
 - **Keybindings docs**: the submit key row now says it seeks to the selected lyric line in the lyrics view instead of "not wired yet" ([#1066](https://github.com/LargeModGames/spotatui/issues/1066)).
 - **Quitting with Soloist leaves playback on another device running**: after handing playback to a phone or another Spotify device, quitting spotatui no longer sends pause or deactivate commands through the inactive Soloist device. Quitting while Soloist plays locally keeps the same behavior ([#994](https://github.com/LargeModGames/spotatui/issues/994)).
